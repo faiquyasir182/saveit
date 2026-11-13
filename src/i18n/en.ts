@@ -32,6 +32,20 @@ export const en = {
     addressError: 'Add house, street and block so the rider can find you.', payment: 'Payment', cashPickup: 'Cash at pickup',
     cashDelivery: 'Cash on delivery', payOnline: 'Pay online', comingPhase3: 'Coming in Phase 3', placing: 'Placing order…', place: 'Place order',
   },
+  request: {
+    title: 'Name your price',
+    intro: 'Tell nearby restaurants what you want and what you’d like to pay. You choose which offer to take.',
+    category: 'What would you like?', portion: 'Portion size', single: 'Single', family: 'Family (serves 3)',
+    quantity: 'How many', area: 'Your area', neededBy: 'Needed by', inMinutes: (m: number) => (m < 60 ? `${m} min` : `${m / 60} hr`),
+    price: 'Your price per portion', priceHint: 'Food only. Any delivery charge is shown on each offer.',
+    send: 'Send request', sending: 'Asking restaurants…',
+    offersTitle: (n: number) => (n === 1 ? '1 offer' : `${n} offers`), offersIntro: 'Nothing is charged until you choose one.',
+    accepted: 'Accepted your price', counter: 'Counteroffer', yourPrice: (p: string) => `You offered ${p}`,
+    ready: 'Ready by', expiresIn: (t: string) => `Expires in ${t}`, expired: 'Expired',
+    choose: 'Choose this offer', declined: (n: number) => `${n} declined`, noOffers: 'No restaurant can take this request',
+    noOffersBody: 'Try a higher price, a later time or pickup instead of delivery.', edit: 'Edit request', newRequest: 'New request',
+    perPortion: 'per portion',
+  },
   placed: { title: 'Order placed', body: 'This is a demo order: no payment was taken and no restaurant was notified.', reference: 'Reference', done: 'Back to offers' },
 }
 export type Strings = typeof en

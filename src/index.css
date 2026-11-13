@@ -94,3 +94,16 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .field { width: 100%; border: 2px solid var(--line); border-radius: var(--radius-sm); padding: 12px 14px; font: inherit; font-size: 16px; background: #fff; color: var(--ink); }
 .field:focus { border-color: var(--primary); outline: none; }
 .field[aria-invalid='true'] { border-color: var(--danger); }
+fieldset { border: 0; margin: 0; min-width: 0; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.tag { border-radius: var(--pill); padding: 4px 10px; font-size: 12px; font-weight: 800; }
+.tag-accept { background: var(--green); }
+.tag-counter { background: var(--yellow); }
+.offer[aria-disabled='true'] { opacity: .6; }
+.offer h3 { font-size: 18px; }
+details summary { cursor: pointer; font-weight: 700; }
+.price-input { position: relative; }
+.price-input span { position: absolute; inset-inline-start: 14px; top: 50%; transform: translateY(-50%); font-weight: 800; }
+.price-input .field { padding-inline-start: 44px; font-size: 20px; font-weight: 800; }
+.skeleton { background: linear-gradient(90deg, var(--surface) 25%, #f3ebdd 50%, var(--surface) 75%); background-size: 200% 100%; animation: shimmer 1.2s infinite; }
+@keyframes shimmer { to { background-position: -200% 0; } }

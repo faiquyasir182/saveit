@@ -41,3 +41,23 @@ export const LISTINGS: Listing[] = [
   { id: 'l4', kind: 'surprise', title: 'Dessert surprise box', category: 'dessert', contents: 'Slices of today’s cakes and pastries. Flavours vary.', portion: 'At least 3 slices', minimumValue: 1200, price: 500, originalPrice: 1200, stock: 0, emoji: '🍰', tint: 'pink', allergens: 'Wheat, eggs, dairy, nuts.', branch: b4 },
   { id: 'l5', kind: 'exact', title: 'Bun kebab and chai', category: 'cafe', contents: '2 bun kebabs and 1 doodh patti.', portion: 'Serves 1', price: 260, originalPrice: 420, stock: 8, emoji: '☕', tint: 'green', allergens: 'Wheat, eggs, dairy.', branch: b5 },
 ]
+
+/**
+ * DEMO negotiation responders. Real eligibility uses the confirmed
+ * category-and-quantity rules (Phase 4); these minimums are synthetic.
+ */
+export interface Responder {
+  branch: Branch
+  /** Minimum food price per portion, by category. Absent category = not eligible. */
+  minUnit: Partial<Record<string, number>>
+  dish: Partial<Record<string, string>>
+  prepMinutes: number
+}
+
+export const RESPONDERS: Responder[] = [
+  { branch: b1, minUnit: { biryani: 300, bbq: 450 }, dish: { biryani: 'Chicken biryani with raita', bbq: 'Chicken tikka with naan' }, prepMinutes: 35 },
+  { branch: b3, minUnit: { bbq: 400, biryani: 380 }, dish: { bbq: 'Beef seekh kebab with naan', biryani: 'Beef biryani' }, prepMinutes: 25 },
+  { branch: b5, minUnit: { cafe: 180, biryani: 260, bakery: 150 }, dish: { cafe: 'Bun kebab and doodh patti', biryani: 'Chicken biryani, half plate extra rice', bakery: 'Chicken patties' }, prepMinutes: 20 },
+  { branch: b2, minUnit: { bakery: 120, dessert: 250 }, dish: { bakery: 'Fresh bakery box', dessert: 'Chocolate fudge slice' }, prepMinutes: 15 },
+  { branch: b4, minUnit: { dessert: 220, cafe: 200 }, dish: { dessert: 'Kheer and gulab jamun', cafe: 'Club sandwich and chai' }, prepMinutes: 30 },
+]
