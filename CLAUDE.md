@@ -1,7 +1,7 @@
 # Karachi Food App
 
 Mobile-first food marketplace for Karachi: surplus food, meal-price negotiation, pooled orphanage meal sponsorship.
-Working brief: docs/DECISIONS.md. Phase order: docs/ROADMAP.md.
+Product context: PRODUCT.md. Visual rules: DESIGN.md. Decisions: docs/DECISIONS.md. Phases: docs/ROADMAP.md.
 
 ## Rules
 - PKR as integer rupees. Store UTC, display `Asia/Karachi`.
@@ -14,4 +14,4 @@ Working brief: docs/DECISIONS.md. Phase order: docs/ROADMAP.md.
 - `npm run dev`: dev server (read the port from its output)
 - `npm test`: unit tests (Vitest)
 - `npm run build`: type-check and build
-- `npm run e2e`: Playwright smoke journey. Needs the dev server running; set `APP_URL` if the port differs.
+- `npm run e2e`: Playwright journeys (smoke, request, sponsor, merchant) with screenshots. Needs the dev server running; set `APP_URL` if the port differs.

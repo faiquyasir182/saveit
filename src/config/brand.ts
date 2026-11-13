@@ -8,11 +8,14 @@ export const BRAND = {
   logoEmoji: '🍲', // placeholder until a real logo asset exists
   colors: {
     primary: '#f26b1d',
-    primaryPress: '#d85a10',
+    primaryPress: '#b94b0a',
     background: '#fbf6ec',
     accentGreen: '#dcefd6',
     accentPink: '#fbe0e3',
     accentYellow: '#fdf0c4',
+    accentPeach: '#fde1c8',
+    heroFrom: '#cfe9b2',
+    heroTo: '#f2f8e4',
   },
 } as const
 
@@ -20,6 +23,7 @@ export function applyBrandTokens(root: HTMLElement = document.documentElement) {
   const c = BRAND.colors
   const set = (k: string, v: string) => root.style.setProperty(k, v)
   set('--primary', c.primary); set('--primary-press', c.primaryPress); set('--bg', c.background)
+  set('--hero-from', c.heroFrom); set('--hero-to', c.heroTo); set('--peach', c.accentPeach)
   set('--green', c.accentGreen); set('--pink', c.accentPink); set('--yellow', c.accentYellow)
   document.title = `${BRAND.name} (prototype)`
 }

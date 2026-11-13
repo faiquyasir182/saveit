@@ -39,7 +39,7 @@ export const LISTINGS: Listing[] = [
   { id: 'l2', kind: 'surprise', title: 'Bakery surprise bag', category: 'bakery', contents: 'A mix of today’s unsold breads, buns and pastries. Items vary by day.', portion: 'At least 5 items', minimumValue: 900, price: 400, originalPrice: 900, stock: 3, emoji: '🥐', tint: 'pink', allergens: 'Wheat, eggs, dairy, may contain nuts.', branch: b2 },
   { id: 'l3', kind: 'exact', title: 'Seekh kebab platter', category: 'bbq', contents: '6 beef seekh kebabs, 2 naan, chutney.', portion: 'Serves 2', price: 650, originalPrice: 1100, stock: 2, emoji: '🍢', tint: 'green', allergens: 'Wheat (naan).', branch: b3 },
   { id: 'l4', kind: 'surprise', title: 'Dessert surprise box', category: 'dessert', contents: 'Slices of today’s cakes and pastries. Flavours vary.', portion: 'At least 3 slices', minimumValue: 1200, price: 500, originalPrice: 1200, stock: 0, emoji: '🍰', tint: 'pink', allergens: 'Wheat, eggs, dairy, nuts.', branch: b4 },
-  { id: 'l5', kind: 'exact', title: 'Bun kebab and chai', category: 'cafe', contents: '2 bun kebabs and 1 doodh patti.', portion: 'Serves 1', price: 260, originalPrice: 420, stock: 8, emoji: '☕', tint: 'green', allergens: 'Wheat, eggs, dairy.', branch: b5 },
+  { id: 'l5', kind: 'exact', title: 'Bun kebab and chai', category: 'cafe', contents: '2 bun kebabs and 1 doodh patti.', portion: 'Serves 1', price: 260, originalPrice: 420, stock: 8, emoji: '☕', tint: 'peach', allergens: 'Wheat, eggs, dairy.', branch: b5 },
 ]
 
 /**

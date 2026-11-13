@@ -3,7 +3,7 @@ const { chromium } = require('playwright');
   const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2 });
   const errs = []; p.on('console', m => m.type() === 'error' && errs.push(m.text())); p.on('pageerror', e => errs.push(e.message));
   const out = process.argv[2];
-  await p.goto('process.env.APP_URL || "http://localhost:5173"'); await p.waitForTimeout(600);
+  await p.goto(process.env.APP_URL || 'http://localhost:5173'); await p.waitForTimeout(600);
   await p.getByRole('button', { name: /Request/ }).click();
   await p.screenshot({ path: out + '/4-request.png', fullPage: true });
   await p.fill('#price', '10'); await p.getByRole('button', { name: 'Send request' }).click();

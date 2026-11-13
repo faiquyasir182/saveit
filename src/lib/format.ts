@@ -12,5 +12,10 @@ const karachiTime = new Intl.DateTimeFormat('en-PK', {
 /** Display a stored UTC instant in Karachi local time. */
 export const formatKarachiTime = (iso: string): string => karachiTime.format(new Date(iso))
 
-export const formatWindow = (startIso: string, endIso: string): string =>
-  `${formatKarachiTime(startIso)} – ${formatKarachiTime(endIso)}`
+/** "9:00 – 11:00 pm": the am/pm marker is shown once when both ends share it. */
+export const formatWindow = (startIso: string, endIso: string): string => {
+  const [start, end] = [formatKarachiTime(startIso), formatKarachiTime(endIso)]
+  const [sTime, sMark] = start.split(' ')
+  const [, eMark] = end.split(' ')
+  return sMark === eMark ? `${sTime} – ${end}` : `${start} – ${end}`
+}

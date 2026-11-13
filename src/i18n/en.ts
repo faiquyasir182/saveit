@@ -3,8 +3,9 @@
  * uses logical CSS properties so dir="rtl" can be switched on later.
  */
 export const en = {
-  demoBanner: 'Prototype · demo merchants and prices only',
-  tabs: { discover: 'Discover', negotiate: 'Request', sponsor: 'Sponsor', orders: 'Orders' },
+  demoBanner: 'Prototype · demo data only',
+  tabs: { discover: 'Home', negotiate: 'Request', sponsor: 'Sponsor', saved: 'Saved', orders: 'Orders' },
+  sponsorFab: 'Sponsor a meal',
   plannedFor: (phase: string) => `This flow is planned for ${phase}. It isn’t part of the first prototype.`,
   discover: {
     eyebrow: 'Karachi · tonight’s surplus',
@@ -16,6 +17,23 @@ export const en = {
     emptyBody: 'No offers match this area and category tonight.',
     emptyCta: 'Show all offers',
   },
+  home: {
+    location: 'Location', area: (a: string | null) => `Karachi · ${a ?? 'All areas'}`, changeArea: 'Change area',
+    search: 'Search food, restaurants or areas', popular: 'Popular tonight', seeAll: 'See all',
+    results: (n: number) => (n === 1 ? '1 offer' : `${n} offers`), notifications: 'You’re all caught up.', off: (p: number) => `${p}% off`,
+    loadError: 'Couldn’t load offers', loadErrorBody: 'Check your connection and try again.', retry: 'Try again', demoImage: 'Demo image',
+    notifButton: 'Notifications', loading: 'Loading offers',
+  },
+  filters: {
+    open: 'Filters', title: 'Filter offers', close: 'Close filters', area: 'Neighbourhood', allAreas: 'All areas', sort: 'Sort by',
+    sorts: { ending: 'Ending soonest', 'price-asc': 'Price: low to high', 'price-desc': 'Price: high to low', saving: 'Biggest saving' },
+    inStock: 'Only show items in stock', apply: 'Show results', reset: 'Reset',
+  },
+  favs: {
+    title: 'Saved', saved: (x: string) => `Saved ${x}`, removed: (x: string) => `Removed ${x}`,
+    save: (x: string) => `Save ${x} to favourites`, remove: (x: string) => `Remove ${x} from favourites`,
+    emptyTitle: 'Nothing saved yet', emptyBody: 'Tap the heart on any offer to keep it here.', browse: 'Browse offers',
+  },
   listing: { surpriseBag: 'Surprise bag', exactItem: 'Exact item', soldOut: 'Sold out', left: (n: number) => `${n} left`, pickup: 'Pickup' },
   detail: {
     back: 'Back to offers', whatVaries: 'What may vary', whatsInside: 'What’s inside', portion: 'Portion', minimumValue: 'Minimum value',
@@ -23,7 +41,8 @@ export const en = {
     soldOutBody: 'This branch has no more of this item. Check back tomorrow or browse other offers.', browseOther: 'Browse other offers',
     quantity: 'Quantity', available: (n: number) => `${n} available`, decrease: 'Decrease quantity', increase: 'Increase quantity',
     fulfilment: 'Pickup or delivery', pickup: 'Pickup', free: 'Free', delivery: 'Restaurant delivery', notOffered: 'Not offered',
-    review: 'Review order',
+    review: 'Review order', title: 'Details', price: 'Price', left: 'Left', youSave: 'You save', soldOutCta: 'Sold out',
+    description: 'Description', summary: 'Order summary', foodLine: 'Food', total: 'Total', perPortion: 'per portion',
   },
   checkout: {
     title: 'Review order', back: 'Back to item', riderNote: 'Delivered by the restaurant’s own rider', total: 'Total',
