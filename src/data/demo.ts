@@ -74,3 +74,16 @@ export const DEMO_CAMPAIGN = {
     { id: 'B-106', label: 'Sunday lunch', meals: 30, cost: 9000, funded: 1200, donorCount: 3, status: 'funding', supplier: 'Demo Chai Café' },
   ] satisfies Batch[],
 }
+
+/** DEMO merchant inbox for Demo Biryani House (branch b1). */
+export const DEMO_INCOMING_REQUESTS = [
+  { id: 'R-31', category: 'biryani', quantity: 4, portion: 'single' as const, proposedUnit: 260, neighbourhood: 'Gulshan-e-Iqbal', fulfilment: 'delivery' as const, neededInMin: 60 },
+  { id: 'R-32', category: 'biryani', quantity: 2, portion: 'single' as const, proposedUnit: 320, neighbourhood: 'Gulistan-e-Johar', fulfilment: 'pickup' as const, neededInMin: 45 },
+  { id: 'R-33', category: 'bbq', quantity: 1, portion: 'family' as const, proposedUnit: 1100, neighbourhood: 'DHA', fulfilment: 'pickup' as const, neededInMin: 90 },
+]
+
+export const DEMO_MERCHANT_ORDERS = [
+  { id: 'DEMO-2041', item: 'Chicken biryani, full plate', quantity: 2, total: 640, fulfilment: 'pickup' as const, status: 'new' as const },
+  { id: 'DEMO-2039', item: 'Chicken biryani, full plate', quantity: 1, total: 470, fulfilment: 'delivery' as const, status: 'accepted' as const },
+  { id: 'DEMO-2033', item: 'Chicken biryani, full plate', quantity: 3, total: 960, fulfilment: 'pickup' as const, status: 'ready' as const },
+]

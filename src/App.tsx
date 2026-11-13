@@ -6,6 +6,7 @@ import { Discover } from './screens/Discover'
 import { FoodDetail } from './screens/FoodDetail'
 import { RequestMeal } from './screens/RequestMeal'
 import { Sponsor } from './screens/Sponsor'
+import { Merchant } from './screens/Merchant'
 import { t as s } from './i18n'
 
 type Tab = 'discover' | 'negotiate' | 'sponsor' | 'orders'
@@ -24,8 +25,9 @@ const TABS: { id: Tab; label: string; icon: string; phase?: string }[] = [
 
 export default function App() {
   const [tab, setTab] = useState<Tab>('discover')
+  const [merchant, setMerchant] = useState(false)
   const [route, setRoute] = useState<Route>({ name: 'discover' })
-  useEffect(() => { window.scrollTo(0, 0) }, [route, tab])
+  useEffect(() => { window.scrollTo(0, 0) }, [route, tab, merchant])
   const find = (id: string) => LISTINGS.find((l) => l.id === id)!
 
   let screen
@@ -50,15 +52,16 @@ export default function App() {
     <>
       <main className="app">
         <div className="demo-banner" role="note">{s.demoBanner}</div>
-        {screen}
+        <button className="role-switch" onClick={() => setMerchant((m) => !m)}>{merchant ? s.merchant.switchBack : s.merchant.switchTo}</button>
+        {merchant ? <Merchant /> : screen}
       </main>
-      <nav className="dock" aria-label="Main">
+      {!merchant && <nav className="dock" aria-label="Main">
         {TABS.map((t) => (
           <button key={t.id} aria-current={tab === t.id ? 'page' : undefined} onClick={() => { setTab(t.id); if (t.id === 'discover') setRoute({ name: 'discover' }) }}>
             <span aria-hidden>{t.icon}</span>{t.label}
           </button>
         ))}
-      </nav>
+      </nav>}
     </>
   )
 }

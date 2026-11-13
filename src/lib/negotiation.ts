@@ -90,3 +90,11 @@ export function selectOffer(offers: Offer[], id: string, now: number): Offer {
   if (isExpired(o, now)) throw new RequestError('This offer has expired. Choose another or send a new request.')
   return o
 }
+
+/** Merchant-side check for a counteroffer: above the customer's price and not below the branch minimum. */
+export function validateCounter(price: number, proposedUnit: number, minUnit: number): string | null {
+  if (!Number.isInteger(price)) return 'Enter a whole rupee amount.'
+  if (price <= proposedUnit) return 'A counteroffer must be higher than the customer’s price. Accept instead.'
+  if (price < minUnit) return `Your minimum for this item is Rs ${minUnit}.`
+  return null
+}

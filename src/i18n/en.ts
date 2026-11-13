@@ -57,6 +57,18 @@ export const en = {
     updates: 'You’ll get updates when your batches are prepared, sent and received.', trackNote: 'Receipt is confirmed by the home’s staff, not by GPS or the driver.',
     done: 'Back to campaign', track: 'Track delivery', privacy: 'Other donors’ names are never shown.',
   },
+  merchant: {
+    familySize: 'family size', switchTo: 'Merchant view (demo)', switchBack: 'Customer view', title: 'Merchant dashboard', branch: 'Branch',
+    tabs: { listings: 'Listings', requests: 'Requests', orders: 'Orders' },
+    stock: 'Stock', live: 'Live', paused: 'Paused', pause: 'Pause', publish: 'Publish',
+    request: (q: number, cat: string) => `${q} × ${cat}`, offered: (p: string) => `Customer offers ${p} per portion`, yourMin: (p: string) => `Your minimum ${p}`,
+    accept: 'Accept', counter: 'Counter', decline: 'Decline', sendCounter: 'Send counteroffer', counterPrice: 'Your price per portion',
+    sent: { accept: 'Accepted. The customer decides whether to choose you.', counter: 'Counteroffer sent. The customer decides.', decline: 'Declined.' },
+    noRequests: 'No open requests', noRequestsBody: 'New meal requests for your categories will appear here.',
+    orderStatus: { new: 'New', accepted: 'Accepted', ready: 'Ready', completed: 'Completed', rejected: 'Rejected' },
+    advance: { new: 'Accept order', accepted: 'Mark ready', ready: 'Mark collected' }, reject: 'Reject',
+    cashNote: 'Cash order: collect payment at handover.',
+  },
   placed: { title: 'Order placed', body: 'This is a demo order: no payment was taken and no restaurant was notified.', reference: 'Reference', done: 'Back to offers' },
 }
 export type Strings = typeof en

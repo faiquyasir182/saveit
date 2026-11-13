@@ -14,6 +14,10 @@
 - Checkout offers cash only. Online payment is shown as Phase 3.
 - Delivery charge is set per branch; null means pickup only.
 
+- Negotiation demo rules: merchants accept at or above their minimum, counter at their minimum if the offer is within 70% of it, otherwise decline. Offers expire after 10 min (accept) or 2 min (counter). Demo responders ignore neighbourhood coverage.
+- Sponsorship demo: the platform fee is unset (shown as "Not set yet"). Contributions fill the oldest batch still raising funds first, and leftover money stays unallocated and linked to the donor.
+- Merchant demo: one branch (Demo Biryani House). Order status moves new → accepted → ready → completed; only new orders can be rejected.
+
 ## Open (ask before the dependent phase)
 - Commission rates and commission base, donation fee (2–3% proposed), who pays each fee, rounding: before Phase 3 and Phase 7.
 - Payment provider and sandbox access: Phase 3.

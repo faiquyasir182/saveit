@@ -114,3 +114,8 @@ details summary { cursor: pointer; font-weight: 700; }
 .timeline li::before { content: ''; position: absolute; top: 0; inset-inline: 0; height: 6px; border-radius: var(--pill); background: #f1e7d6; }
 .timeline li[data-done='true'] { color: var(--ink); }
 .timeline li[data-done='true']::before { background: #6bbf59; }
+.seg-3 { grid-template-columns: repeat(3, 1fr); }
+.seg-3 button { min-height: 48px; text-align: center; }
+.actions { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 8px; }
+.actions .btn { width: 100%; padding-inline: 10px; }
+.role-switch { background: none; border: 0; text-decoration: underline; font-weight: 800; font-size: 13px; color: var(--ink-soft); padding: 8px; display: block; margin: -8px auto 8px; min-height: 40px; }

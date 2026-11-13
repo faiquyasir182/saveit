@@ -9,7 +9,7 @@
     "lint": "oxlint",
     "preview": "vite preview",
     "test": "vitest run",
-    "e2e": "node scripts/e2e-smoke.cjs ./screenshots"
+    "e2e": "mkdir -p screenshots && for f in scripts/e2e-*.cjs; do node $f ./screenshots || exit 1; done"
   },
   "dependencies": {
     "react": "^19.3.1",
