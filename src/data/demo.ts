@@ -1,0 +1,43 @@
+/**
+ * DEMONSTRATION DATA ONLY. Merchants, prices and stock are synthetic and
+ * exist to exercise the Phase 1 prototype. Nothing here is a real offer.
+ */
+import type { Branch, Listing } from './types'
+
+export const NEIGHBOURHOODS = ['DHA', 'Clifton', 'Gulistan-e-Johar', 'Gulshan-e-Iqbal', 'Nazimabad'] as const
+
+export const CATEGORIES = [
+  { id: 'all', label: 'All', emoji: '🍽️' },
+  { id: 'biryani', label: 'Biryani', emoji: '🍛' },
+  { id: 'bakery', label: 'Bakery', emoji: '🥐' },
+  { id: 'bbq', label: 'BBQ', emoji: '🍢' },
+  { id: 'dessert', label: 'Dessert', emoji: '🍰' },
+  { id: 'cafe', label: 'Café', emoji: '☕' },
+] as const
+
+/** Karachi is UTC+5 with no DST: build today's local hour as a UTC ISO string. */
+function karachiToday(hour: number, minute = 0): string {
+  const now = new Date(Date.now() + 5 * 3600_000)
+  const d = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), hour - 5, minute))
+  return d.toISOString()
+}
+
+const branch = (b: Omit<Branch, 'pickupStart' | 'pickupEnd'>, from: number, to: number): Branch => ({
+  ...b,
+  pickupStart: karachiToday(from),
+  pickupEnd: karachiToday(to),
+})
+
+const b1 = branch({ id: 'b1', merchantName: 'Demo Biryani House', branchName: 'Tariq Road', neighbourhood: 'Gulshan-e-Iqbal', deliveryCharge: 150 }, 21, 23)
+const b2 = branch({ id: 'b2', merchantName: 'Demo Bakers', branchName: 'Khayaban-e-Ittehad', neighbourhood: 'DHA', deliveryCharge: 200 }, 20, 22)
+const b3 = branch({ id: 'b3', merchantName: 'Demo Seekh Corner', branchName: 'Boat Basin', neighbourhood: 'Clifton', deliveryCharge: null }, 22, 24)
+const b4 = branch({ id: 'b4', merchantName: 'Demo Sweet Studio', branchName: 'Block 13', neighbourhood: 'Gulistan-e-Johar', deliveryCharge: 120 }, 19, 21)
+const b5 = branch({ id: 'b5', merchantName: 'Demo Chai Café', branchName: 'Block H', neighbourhood: 'Nazimabad', deliveryCharge: 100 }, 18, 20)
+
+export const LISTINGS: Listing[] = [
+  { id: 'l1', kind: 'exact', title: 'Chicken biryani, full plate', category: 'biryani', contents: 'Chicken biryani with raita and salad.', portion: '1 plate, about 450 g, serves 1', price: 320, originalPrice: 550, stock: 6, emoji: '🍛', tint: 'yellow', allergens: 'Dairy (raita). Ask the restaurant about other allergens.', branch: b1 },
+  { id: 'l2', kind: 'surprise', title: 'Bakery surprise bag', category: 'bakery', contents: 'A mix of today’s unsold breads, buns and pastries. Items vary by day.', portion: 'At least 5 items', minimumValue: 900, price: 400, originalPrice: 900, stock: 3, emoji: '🥐', tint: 'pink', allergens: 'Wheat, eggs, dairy, may contain nuts.', branch: b2 },
+  { id: 'l3', kind: 'exact', title: 'Seekh kebab platter', category: 'bbq', contents: '6 beef seekh kebabs, 2 naan, chutney.', portion: 'Serves 2', price: 650, originalPrice: 1100, stock: 2, emoji: '🍢', tint: 'green', allergens: 'Wheat (naan).', branch: b3 },
+  { id: 'l4', kind: 'surprise', title: 'Dessert surprise box', category: 'dessert', contents: 'Slices of today’s cakes and pastries. Flavours vary.', portion: 'At least 3 slices', minimumValue: 1200, price: 500, originalPrice: 1200, stock: 0, emoji: '🍰', tint: 'pink', allergens: 'Wheat, eggs, dairy, nuts.', branch: b4 },
+  { id: 'l5', kind: 'exact', title: 'Bun kebab and chai', category: 'cafe', contents: '2 bun kebabs and 1 doodh patti.', portion: 'Serves 1', price: 260, originalPrice: 420, stock: 8, emoji: '☕', tint: 'green', allergens: 'Wheat, eggs, dairy.', branch: b5 },
+]

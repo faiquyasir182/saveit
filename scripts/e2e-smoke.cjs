@@ -1,0 +1,25 @@
+const { chromium } = require('playwright');
+(async () => {
+  const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2 });
+  const errs = []; p.on('console', m => m.type() === 'error' && errs.push(m.text())); p.on('pageerror', e => errs.push(e.message));
+  const out = process.argv[2];
+  await p.goto('process.env.APP_URL || "http://localhost:5173"'); await p.waitForTimeout(800);
+  await p.screenshot({ path: out + '/1-discover.png' });
+  await p.getByRole('button', { name: 'Clifton' }).click();
+  console.log('clifton cards', await p.locator('.card').count());
+  await p.getByRole('button', { name: 'All areas' }).click();
+  await p.locator('.card').first().click();
+  await p.getByLabel('Increase quantity').click();
+  await p.getByRole('button', { name: /Restaurant delivery/ }).click();
+  console.log('cta', await p.locator('.btn-primary').innerText());
+  await p.screenshot({ path: out + '/2-detail.png', fullPage: true });
+  await p.locator('.btn-primary').click();
+  await p.getByRole('button', { name: /Place order/ }).click();
+  console.log('errors shown', await p.locator('.error').count());
+  await p.fill('#phone', '0300 1234567'); await p.fill('#addr', 'House 12, Street 4, Block 13-D');
+  await p.screenshot({ path: out + '/3-checkout.png', fullPage: true });
+  await p.getByRole('button', { name: /Place order/ }).click(); await p.waitForTimeout(900);
+  console.log('placed', await p.locator('h1').innerText());
+  const sw = await p.evaluate(() => document.documentElement.scrollWidth); console.log('scrollWidth', sw);
+  console.log('console errors', errs); await b.close();
+})();
