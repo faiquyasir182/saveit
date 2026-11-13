@@ -46,6 +46,17 @@ export const en = {
     noOffersBody: 'Try a higher price, a later time or pickup instead of delivery.', edit: 'Edit request', newRequest: 'New request',
     perPortion: 'per portion',
   },
+  sponsor: {
+    title: 'Sponsor a meal', intro: 'Pool money with other donors to feed children at a verified home. You’ll see each batch prepared, sent and received.',
+    meals: (n: number) => `${n} meals`, donors: (n: number) => (n === 1 ? '1 donor' : `${n} donors`), of: 'of',
+    status: { funding: 'Raising funds', preparing: 'Being prepared', dispatched: 'On the way', delivered: 'Arrived', confirmed: 'Receipt confirmed' },
+    amount: 'Your contribution', custom: 'Other amount', range: 'Rs 1 to Rs 10,000',
+    where: 'Where your money goes', fee: 'Platform fee', feeTbc: 'Not set yet', unallocated: 'Held for the next batch',
+    unallocatedNote: 'Unallocated money stays linked to you and this campaign. It is never platform revenue.',
+    give: 'Contribute', giving: 'Processing…', thanks: 'Thank you', receipt: 'Demo receipt: no money was taken.',
+    updates: 'You’ll get updates when your batches are prepared, sent and received.', trackNote: 'Receipt is confirmed by the home’s staff, not by GPS or the driver.',
+    done: 'Back to campaign', track: 'Track delivery', privacy: 'Other donors’ names are never shown.',
+  },
   placed: { title: 'Order placed', body: 'This is a demo order: no payment was taken and no restaurant was notified.', reference: 'Reference', done: 'Back to offers' },
 }
 export type Strings = typeof en

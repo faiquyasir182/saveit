@@ -5,6 +5,7 @@ import { Checkout, OrderPlaced } from './screens/Checkout'
 import { Discover } from './screens/Discover'
 import { FoodDetail } from './screens/FoodDetail'
 import { RequestMeal } from './screens/RequestMeal'
+import { Sponsor } from './screens/Sponsor'
 import { t as s } from './i18n'
 
 type Tab = 'discover' | 'negotiate' | 'sponsor' | 'orders'
@@ -17,7 +18,7 @@ type Route =
 const TABS: { id: Tab; label: string; icon: string; phase?: string }[] = [
   { id: 'discover', label: s.tabs.discover, icon: '🍽️' },
   { id: 'negotiate', label: s.tabs.negotiate, icon: '🤝' },
-  { id: 'sponsor', label: s.tabs.sponsor, icon: '💛', phase: 'Phase 7' },
+  { id: 'sponsor', label: s.tabs.sponsor, icon: '💛' },
   { id: 'orders', label: s.tabs.orders, icon: '🧾', phase: 'Phase 3' },
 ]
 
@@ -30,6 +31,8 @@ export default function App() {
   let screen
   if (tab === 'negotiate') {
     screen = <RequestMeal />
+  } else if (tab === 'sponsor') {
+    screen = <Sponsor />
   } else if (tab !== 'discover') {
     const t = TABS.find((x) => x.id === tab)!
     screen = <div className="empty panel"><h2>{t.label}</h2><p className="muted">{s.plannedFor(t.phase!)}</p></div>

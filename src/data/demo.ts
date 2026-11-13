@@ -61,3 +61,16 @@ export const RESPONDERS: Responder[] = [
   { branch: b2, minUnit: { bakery: 120, dessert: 250 }, dish: { bakery: 'Fresh bakery box', dessert: 'Chocolate fudge slice' }, prepMinutes: 15 },
   { branch: b4, minUnit: { dessert: 220, cafe: 200 }, dish: { dessert: 'Kheer and gulab jamun', cafe: 'Club sandwich and chai' }, prepMinutes: 30 },
 ]
+
+/** DEMO campaign. The partner, costs and batches are synthetic, not a real orphanage. */
+import type { Batch } from '../lib/donations'
+export const DEMO_CAMPAIGN = {
+  partner: 'Demo Children’s Home',
+  neighbourhood: 'Gulshan-e-Iqbal',
+  verifiedNote: 'Verification shown for demo only',
+  batches: [
+    { id: 'B-104', label: 'Friday lunch', meals: 40, cost: 12000, funded: 12000, donorCount: 21, status: 'dispatched', supplier: 'Demo Biryani House' },
+    { id: 'B-105', label: 'Saturday dinner', meals: 40, cost: 12000, funded: 9100, donorCount: 17, status: 'funding', supplier: 'Demo Biryani House' },
+    { id: 'B-106', label: 'Sunday lunch', meals: 30, cost: 9000, funded: 1200, donorCount: 3, status: 'funding', supplier: 'Demo Chai Café' },
+  ] satisfies Batch[],
+}

@@ -107,3 +107,10 @@ details summary { cursor: pointer; font-weight: 700; }
 .price-input .field { padding-inline-start: 44px; font-size: 20px; font-weight: 800; }
 .skeleton { background: linear-gradient(90deg, var(--surface) 25%, #f3ebdd 50%, var(--surface) 75%); background-size: 200% 100%; animation: shimmer 1.2s infinite; }
 @keyframes shimmer { to { background-position: -200% 0; } }
+.bar { height: 10px; background: #f1e7d6; border-radius: var(--pill); overflow: hidden; }
+.bar span { display: block; height: 100%; background: var(--primary); border-radius: var(--pill); transition: width .4s; }
+.timeline { list-style: none; padding: 0; margin: 4px 0 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; font-size: 11px; font-weight: 700; text-align: center; }
+.timeline li { padding-top: 14px; position: relative; color: var(--ink-soft); }
+.timeline li::before { content: ''; position: absolute; top: 0; inset-inline: 0; height: 6px; border-radius: var(--pill); background: #f1e7d6; }
+.timeline li[data-done='true'] { color: var(--ink); }
+.timeline li[data-done='true']::before { background: #6bbf59; }
