@@ -36,3 +36,4 @@
 - Photos: Wikimedia Commons, representative demo images only, not the restaurants' dishes. Sources and licences in public/images/food/manifest.json; credit shown on the details page.
 - Assumptions (unconfirmed): mobile-first; home prioritises nearby deals; Request/Sponsor secondary.
 - Not done: background-removed cutouts; Impeccable (runs on the user's Mac after cloning).
+- Photos are cutouts on white (U2-Net via rembg, run offline in a script; derivatives of the Commons originals, so CC BY-SA credit and share-alike still apply to the biryani image; others are CC0/public domain).

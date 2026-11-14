@@ -1,5 +1,5 @@
 {
-  "note": "Representative demonstration images from Wikimedia Commons. They are NOT photos of any listed restaurant's actual food. Cropped and resized to WebP; no other edits.",
+  "note": "Representative demonstration images from Wikimedia Commons, NOT photos of any listed restaurant's food. Each is a derivative: cropped, background removed with the open-source U2-Net model (via rembg), placed on white with a soft shadow and resized to WebP. CC BY-SA images stay CC BY-SA when adapted: keep the credit and share any further changes under the same licence.",
   "retrieved": "2026-11-14",
   "images": [
     {
@@ -102,5 +102,6 @@
         "thumb": "images/food/cafe-thumb.webp"
       }
     }
-  ]
+  ],
+  "edits": "cutout on white background"
 }
