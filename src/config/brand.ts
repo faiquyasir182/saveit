@@ -1,29 +1,34 @@
+import type { CategoryId } from '../data/categories'
+
 /**
- * Central brand config. "Karachi Food App" is a temporary working name.
- * Replace name, logo and colours here only; CSS tokens read the colours at startup.
+ * Central brand config. Name, logo colours, action colour and category tints live here only;
+ * applyBrandTokens() writes them to CSS custom properties at startup (and the owner editor can later).
  */
 export const BRAND = {
-  name: 'Karachi Food App',
-  shortName: 'KFA',
-  logoEmoji: '🍲', // placeholder until a real logo asset exists
+  name: 'Saveit',
   colors: {
-    primary: '#f26b1d',
-    primaryPress: '#b94b0a',
-    background: '#fbf6ec',
-    accentGreen: '#dcefd6',
-    accentPink: '#fbe0e3',
-    accentYellow: '#fdf0c4',
-    accentPeach: '#fde1c8',
-    heroFrom: '#cfe9b2',
-    heroTo: '#f2f8e4',
+    action: '#cf4a0e', // the only action accent: buttons, links that act, focus ring
+    actionPress: '#b03f0b',
+    background: '#fbf8f4',
+    ink: '#1f1a15',
   },
+  /** Header tint per selected category. Pale, so ink text stays above 12:1. */
+  categoryTints: {
+    all: '#e6f0dc',
+    biryani: '#f5e3b3',
+    bakery: '#fbf1d3',
+    bbq: '#f6dcc9',
+    dessert: '#f8dde3',
+    cafe: '#eadccb',
+  } satisfies Record<CategoryId, string>,
 } as const
 
 export function applyBrandTokens(root: HTMLElement = document.documentElement) {
-  const c = BRAND.colors
-  const set = (k: string, v: string) => root.style.setProperty(k, v)
-  set('--primary', c.primary); set('--primary-press', c.primaryPress); set('--bg', c.background)
-  set('--hero-from', c.heroFrom); set('--hero-to', c.heroTo); set('--peach', c.accentPeach)
-  set('--green', c.accentGreen); set('--pink', c.accentPink); set('--yellow', c.accentYellow)
+  const { colors, categoryTints } = BRAND
+  root.style.setProperty('--action', colors.action)
+  root.style.setProperty('--action-press', colors.actionPress)
+  root.style.setProperty('--bg', colors.background)
+  root.style.setProperty('--ink', colors.ink)
+  for (const [id, hex] of Object.entries(categoryTints)) root.style.setProperty(`--tint-${id}`, hex)
   document.title = `${BRAND.name} (prototype)`
 }

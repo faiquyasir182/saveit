@@ -10,6 +10,7 @@ const PATHS = {
   sliders: <><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6" /></>,
   bag: <><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" /><path d="M3 6h18" /><path d="M16 10a4 4 0 0 1-8 0" /></>,
   back: <><path d="M19 12H5" /><path d="M12 19l-7-7 7-7" /></>,
+  check: <path d="M20 6L9 17l-5-5" />,
   close: <path d="M18 6L6 18M6 6l12 12" />,
   bookmark: <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />,
 } as const

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { NEIGHBOURHOODS } from '../data/demo'
 import { t } from '../i18n'
+import { loc } from '../i18n/loc'
 import { DEFAULT_FILTERS, type Filters, type Sort } from '../lib/discover'
 import { Icon } from './Icon'
 
@@ -35,7 +36,7 @@ export function FilterDrawer({ filters, onApply, onClose }: Props) {
         <section><h3>{t.filters.area}</h3>
           <div className="scroll-x" style={{ flexWrap: 'wrap' }} role="group" aria-label={t.filters.area}>
             <button className="pill" aria-pressed={draft.area === null} onClick={() => setDraft({ ...draft, area: null })}>{t.filters.allAreas}</button>
-            {NEIGHBOURHOODS.map((n) => <button key={n} className="pill" aria-pressed={draft.area === n} onClick={() => setDraft({ ...draft, area: n })}>{n}</button>)}
+            {NEIGHBOURHOODS.map((n) => <button key={n} className="pill" aria-pressed={draft.area === n} onClick={() => setDraft({ ...draft, area: n })}>{loc.area(n)}</button>)}
           </div>
         </section>
         <section><h3>{t.filters.sort}</h3>

@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import type { Fulfilment, Listing } from '../data/types'
 import { formatPKR, formatWindow } from '../lib/format'
+import { Icon } from '../components/Icon'
 import { t } from '../i18n'
+import { loc } from '../i18n/loc'
 import { quoteOrder } from '../lib/pricing'
 
 interface Props { listing: Listing; qty: number; fulfilment: Fulfilment; onBack: () => void; onPlaced: (ref: string) => void }
@@ -29,10 +31,10 @@ export function Checkout({ listing, qty, fulfilment, onBack, onPlaced }: Props) 
     <div className="stack">
       <div className="row"><button className="icon-btn" onClick={onBack} aria-label={t.checkout.back}>←</button><h1 style={{ fontSize: 24 }}>{t.checkout.title}</h1></div>
       <section className="panel">
-        <h2 style={{ fontSize: 18 }}>{listing.branch.merchantName}</h2>
-        <span className="muted">{listing.branch.branchName}, {listing.branch.neighbourhood} · {fulfilment === 'pickup' ? `Pickup ${formatWindow(listing.branch.pickupStart, listing.branch.pickupEnd)}` : t.checkout.riderNote}</span>
+        <h2 style={{ fontSize: 18 }}>{loc.merchant(listing.branch.merchantName)}</h2>
+        <span className="muted">{loc.branch(listing.branch.branchName)}, {loc.area(listing.branch.neighbourhood)} · {fulfilment === 'pickup' ? `Pickup ${formatWindow(listing.branch.pickupStart, listing.branch.pickupEnd)}` : t.checkout.riderNote}</span>
         <dl className="lines">
-          <div><dt>{qty} × {listing.title}</dt><dd>{formatPKR(quote.foodSubtotal)}</dd></div>
+          <div><dt>{qty} × {loc.listing(listing).title}</dt><dd>{formatPKR(quote.foodSubtotal)}</dd></div>
           <div><dt>{fulfilment === 'pickup' ? 'Pickup' : 'Delivery'}</dt><dd>{quote.deliveryCharge ? formatPKR(quote.deliveryCharge) : 'Free'}</dd></div>
           <div className="total"><dt>{t.checkout.total}</dt><dd>{formatPKR(quote.total)}</dd></div>
         </dl>
@@ -63,7 +65,7 @@ export function Checkout({ listing, qty, fulfilment, onBack, onPlaced }: Props) 
 export function OrderPlaced({ reference, onDone }: { reference: string; onDone: () => void }) {
   return (
     <div className="stack" style={{ textAlign: 'center', paddingTop: 40 }}>
-      <div className="photo" data-tint="green" style={{ width: 120, height: 120, borderRadius: '50%', margin: '0 auto', fontSize: 56 }}><span aria-hidden>✅</span></div>
+      <div className="seal"><Icon name="check" size={44} /></div>
       <h1>{t.placed.title}</h1>
       <p className="muted">{t.placed.reference} <strong>{reference}</strong>. {t.placed.body}</p>
       <button className="btn btn-primary" onClick={onDone}>{t.placed.done}</button>

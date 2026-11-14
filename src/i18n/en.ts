@@ -1,15 +1,32 @@
 /**
- * English UI strings. Add ur.ts with the same shape for Urdu; layout already
- * uses logical CSS properties so dir="rtl" can be switched on later.
+ * English UI strings. ur.ts must keep the same shape (the compiler checks it).
  */
 export const en = {
   demoBanner: 'Prototype · demo data only',
   tabs: { discover: 'Home', negotiate: 'Request', sponsor: 'Sponsor', saved: 'Saved', orders: 'Orders' },
-  sponsorFab: 'Sponsor a meal',
+  appNav: 'Main',
+  lang: { switchLabel: 'اردو', switchAria: 'Switch to Urdu' },
+  categories: { all: 'All', biryani: 'Biryani', bakery: 'Bakery', bbq: 'BBQ', dessert: 'Dessert', cafe: 'Café' },
+  categoryCopy: {
+    all: { title: 'Tonight’s offers', blurb: 'Surplus from kitchens across Karachi, at a lower price.' },
+    biryani: { title: 'Biryani', blurb: 'Plates from kitchens with rice to spare tonight.' },
+    bakery: { title: 'Bakery', blurb: 'Fresh-baked goods that didn’t sell today.' },
+    bbq: { title: 'BBQ', blurb: 'Seekh kebab and grill platters.' },
+    dessert: { title: 'Dessert', blurb: 'Cakes, pastries and sweets.' },
+    cafe: { title: 'Café', blurb: 'Chai and light-bite sets.' },
+  },
+  images: {
+    biryani: 'A plate of Lahore-style biryani', bakery: 'A basket of freshly baked bread rolls', bbq: 'Grilled seekh kebabs with naan and salad',
+    dessert: 'A slice of chocolate cake on a white plate', cafe: 'A cup of doodh patti chai',
+  },
+  credit: (author: string, licence: string) => `Photo: ${author}, ${licence}, via Wikimedia Commons`,
+  repImage: 'Representative image, not this restaurant’s actual dish.',
+  homeLinks: {
+    requestTitle: 'Can’t find it?', requestBody: 'Name your price and let restaurants respond.',
+    sponsorTitle: 'Sponsor a meal', sponsorBody: 'Pool money for meals at a verified children’s home.',
+  },
   plannedFor: (phase: string) => `This flow is planned for ${phase}. It isn’t part of the first prototype.`,
   discover: {
-    eyebrow: 'Karachi · tonight’s surplus',
-    title: 'Good food, smaller price.',
     categories: 'Categories',
     neighbourhood: 'Neighbourhood',
     allAreas: 'All areas',
@@ -21,7 +38,7 @@ export const en = {
     location: 'Location', area: (a: string | null) => `Karachi · ${a ?? 'All areas'}`, changeArea: 'Change area',
     search: 'Search food, restaurants or areas', popular: 'Popular tonight', seeAll: 'See all',
     results: (n: number) => (n === 1 ? '1 offer' : `${n} offers`), notifications: 'You’re all caught up.', off: (p: number) => `${p}% off`,
-    loadError: 'Couldn’t load offers', loadErrorBody: 'Check your connection and try again.', retry: 'Try again', demoImage: 'Demo image',
+    loadError: 'Couldn’t load offers', loadErrorBody: 'Check your connection and try again.', retry: 'Try again', demoImage: 'Demo image', areaAria: (a: string) => `Area: ${a}. Change area`,
     notifButton: 'Notifications', loading: 'Loading offers',
   },
   filters: {

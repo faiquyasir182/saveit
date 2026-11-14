@@ -27,3 +27,12 @@
 
 ## Missing inputs
 - `Karachi_Food_App_Production_Plan.md` and the UI reference image have not been supplied yet. Tokens follow the written visual description.
+
+## Saveit redesign (2026-11-14)
+- Brand "Saveit" (src/config/brand.ts); simple original logo (orange bowl mark + lowercase wordmark).
+- Warm, appetising, premium; orange is the only action accent; flat buttons, no gradients or glass.
+- Motion 300-450ms via motion/react: sliding ring (layoutId), header tint crossfade, copy fade, card fade/stagger. Reduced motion honoured (MotionConfig). Note: >300ms is a documented exception to the generic 300ms motion-token guidance.
+- English + Urdu (RTL, Figtree + Noto Nastaliq Urdu). Urdu text needs native review; some demo dish names stay English.
+- Photos: Wikimedia Commons, representative demo images only, not the restaurants' dishes. Sources and licences in public/images/food/manifest.json; credit shown on the details page.
+- Assumptions (unconfirmed): mobile-first; home prioritises nearby deals; Request/Sponsor secondary.
+- Not done: background-removed cutouts; Impeccable (runs on the user's Mac after cloning).

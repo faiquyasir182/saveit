@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react'
-import { CATEGORIES, NEIGHBOURHOODS, RESPONDERS } from '../data/demo'
+import { CategoryButton } from '../components/CategoryButton'
+import { CATEGORY_IDS } from '../data/categories'
+import { NEIGHBOURHOODS, RESPONDERS } from '../data/demo'
 import type { Fulfilment } from '../data/types'
 import { t } from '../i18n'
+import { loc } from '../i18n/loc'
 import { formatKarachiTime, formatPKR } from '../lib/format'
 import { type MealRequest, type Offer, RequestError, isExpired, respond, selectOffer } from '../lib/negotiation'
 import { OrderPlaced } from './Checkout'
@@ -63,7 +66,7 @@ export function RequestMeal() {
                   <span className={`tag tag-${o.kind}`}>{o.kind === 'accept' ? s.accepted : s.counter}</span>
                   <span className={`muted ${expired ? 'error' : ''}`} style={{ fontSize: 13 }} aria-live="off">{expired ? s.expired : s.expiresIn(fmtLeft(Date.parse(o.expiresAt) - now))}</span>
                 </div>
-                <div><h3>{o.dish}</h3><span className="muted">{o.branch.merchantName} · {o.branch.neighbourhood}</span></div>
+                <div><h3>{o.dish}</h3><span className="muted">{loc.merchant(o.branch.merchantName)} · {loc.area(o.branch.neighbourhood)}</span></div>
                 <dl className="lines">
                   <div><dt>{o.quantity} × {formatPKR(o.unitPrice)} {form.portion === 'family' ? `(${t.request.family})` : ''}</dt><dd>{formatPKR(o.foodTotal)}</dd></div>
                   {form.fulfilment === 'delivery' && <div><dt>{t.detail.delivery}</dt><dd>{formatPKR(o.deliveryCharge)}</dd></div>}
@@ -74,7 +77,7 @@ export function RequestMeal() {
               </article>
             )
           })}
-          {declined > 0 && <details className="muted"><summary>{s.declined(declined)}</summary>{offers.filter((o) => o.kind === 'decline').map((o) => <p key={o.id} style={{ margin: '6px 0' }}>{o.branch.merchantName}: {o.declineReason}</p>)}</details>}
+          {declined > 0 && <details className="muted"><summary>{s.declined(declined)}</summary>{offers.filter((o) => o.kind === 'decline').map((o) => <p key={o.id} style={{ margin: '6px 0' }}>{loc.merchant(o.branch.merchantName)}: {o.declineReason}</p>)}</details>}
           <button className="btn btn-ghost" onClick={() => setStep('form')}>{s.newRequest}</button>
         </>)}
       </div>
@@ -85,9 +88,7 @@ export function RequestMeal() {
     <form className="stack" onSubmit={(e) => { e.preventDefault(); send() }}>
       <header><h1 style={{ fontSize: 30 }}>{s.title}</h1><p className="muted" style={{ margin: '6px 0 0' }}>{s.intro}</p></header>
       <fieldset className="panel"><legend className="sr-only">{s.category}</legend><h2 style={{ fontSize: 18 }} aria-hidden>{s.category}</h2>
-        <div className="cats">{CATEGORIES.filter((c) => c.id !== 'all').map((c) => (
-          <button type="button" key={c.id} className="cat" aria-pressed={form.category === c.id} onClick={() => set('category', c.id)}><span className="cat-circle" aria-hidden>{c.emoji}</span>{c.label}</button>))}
-        </div>
+        <div className="cats">{CATEGORY_IDS.filter((id) => id !== 'all').map((id) => <CategoryButton key={id} id={id} active={form.category === id} onSelect={() => set('category', id)} />)}</div>
       </fieldset>
       <section className="panel">
         <h2 style={{ fontSize: 18 }}>{s.portion}</h2>
@@ -104,7 +105,7 @@ export function RequestMeal() {
       </section>
       <section className="panel">
         <h2 style={{ fontSize: 18 }}>{s.area}</h2>
-        <div className="scroll-x" role="group" aria-label={s.area}>{NEIGHBOURHOODS.map((n) => <button type="button" key={n} className="pill" aria-pressed={form.neighbourhood === n} onClick={() => set('neighbourhood', n)}>{n}</button>)}</div>
+        <div className="scroll-x" role="group" aria-label={s.area}>{NEIGHBOURHOODS.map((n) => <button type="button" key={n} className="pill" aria-pressed={form.neighbourhood === n} onClick={() => set('neighbourhood', n)}>{loc.area(n)}</button>)}</div>
         <div className="seg" role="group" aria-label={t.detail.fulfilment}>
           <button type="button" aria-pressed={form.fulfilment === 'pickup'} onClick={() => set('fulfilment', 'pickup')}>{t.detail.pickup}</button>
           <button type="button" aria-pressed={form.fulfilment === 'delivery'} onClick={() => set('fulfilment', 'delivery')}>{t.detail.delivery}</button>

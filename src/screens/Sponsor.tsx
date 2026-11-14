@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { DEMO_CAMPAIGN } from '../data/demo'
+import { Icon } from '../components/Icon'
 import { t } from '../i18n'
+import { loc } from '../i18n/loc'
 import { formatPKR } from '../lib/format'
 import { type Batch, type BatchStatus, type ContributionResult, ContributionError, allocate, applyAllocations } from '../lib/donations'
 
@@ -13,9 +15,9 @@ function BatchCard({ b, mine }: { b: Batch; mine?: number }) {
   const stepIdx = STEPS.indexOf(b.status)
   return (
     <article className="panel">
-      <div className="spread"><h3>{b.label}</h3><span className={`tag ${b.status === 'funding' ? 'tag-counter' : 'tag-accept'}`}>{s.status[b.status]}</span></div>
-      <span className="muted">{s.meals(b.meals)} · {b.supplier} · {s.donors(b.donorCount)}</span>
-      <div className="bar" role="progressbar" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100} aria-label={`${b.label} funded`}><span style={{ width: `${pct}%` }} /></div>
+      <div className="spread"><h3>{loc.batch(b.id, b.label)}</h3><span className={`tag ${b.status === 'funding' ? 'tag-counter' : 'tag-accept'}`}>{s.status[b.status]}</span></div>
+      <span className="muted">{s.meals(b.meals)} · {loc.merchant(b.supplier)} · {s.donors(b.donorCount)}</span>
+      <div className="bar" role="progressbar" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100} aria-label={`${loc.batch(b.id, b.label)}`}><span style={{ width: `${pct}%` }} /></div>
       <div className="spread" style={{ fontSize: 14 }}><strong>{formatPKR(b.funded)} {s.of} {formatPKR(b.cost)}</strong>{mine ? <span className="tag tag-accept">+{formatPKR(mine)} yours</span> : null}</div>
       {b.status !== 'funding' && (
         <ol className="timeline" aria-label={s.track}>
@@ -33,7 +35,7 @@ export function Sponsor() {
   const [busy, setBusy] = useState(false)
   let preview: ContributionResult | null = null, error: string | null = null
   try { preview = allocate(Number(amount), batches) } catch (e) { error = e instanceof ContributionError ? e.message : 'Something went wrong.' }
-  const label = (id: string) => batches.find((b) => b.id === id)?.label ?? id
+  const label = (id: string) => { const b = batches.find((x) => x.id === id); return b ? loc.batch(b.id, b.label) : id }
 
   function give() {
     if (!preview || busy) return
@@ -45,7 +47,7 @@ export function Sponsor() {
   if (result) {
     return (
       <div className="stack">
-        <div className="photo" data-tint="pink" style={{ width: 110, height: 110, borderRadius: '50%', margin: '20px auto 0', fontSize: 52 }}><span aria-hidden>💛</span></div>
+        <div className="seal"><Icon name="heart" size={44} filled /></div>
         <h1 style={{ textAlign: 'center' }}>{s.thanks}</h1>
         <p className="muted" style={{ textAlign: 'center', margin: 0 }}>{s.receipt} {s.updates}</p>
         <section className="panel"><h2 style={{ fontSize: 18 }}>{s.where}</h2>
@@ -67,7 +69,7 @@ export function Sponsor() {
     <div className="stack">
       <header><h1 style={{ fontSize: 30 }}>{s.title}</h1><p className="muted" style={{ margin: '6px 0 0' }}>{s.intro}</p></header>
       <section className="panel" style={{ background: 'var(--green)' }}>
-        <div className="row"><span style={{ fontSize: 32 }} aria-hidden>🏠</span><div><h2 style={{ fontSize: 18 }}>{DEMO_CAMPAIGN.partner}</h2><span className="muted" style={{ fontSize: 13 }}>{DEMO_CAMPAIGN.neighbourhood} · {DEMO_CAMPAIGN.verifiedNote}</span></div></div>
+        <div className="row"><span style={{ fontSize: 32 }} aria-hidden>🏠</span><div><h2 style={{ fontSize: 18 }}>{loc.partner(DEMO_CAMPAIGN.partner)}</h2><span className="muted" style={{ fontSize: 13 }}>{loc.area(DEMO_CAMPAIGN.neighbourhood)} · {loc.verifiedNote(DEMO_CAMPAIGN.verifiedNote)}</span></div></div>
       </section>
       {batches.map((b) => <BatchCard key={b.id} b={b} />)}
       <section className="panel">

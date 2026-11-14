@@ -1,7 +1,11 @@
 import { useState } from 'react'
+import { FoodImage } from '../components/FoodImage'
 import { Icon } from '../components/Icon'
+import type { ImageSlug } from '../data/categories'
+import { FOOD_IMAGES } from '../data/images'
 import type { Fulfilment, Listing } from '../data/types'
 import { t } from '../i18n'
+import { loc } from '../i18n/loc'
 import { discountPercent } from '../lib/discover'
 import { formatPKR, formatWindow } from '../lib/format'
 import { QuoteError, quoteOrder } from '../lib/pricing'
@@ -19,41 +23,41 @@ export function FoodDetail({ listing, favourite, onToggleFav, onBack, onCheckout
   }
   const { branch } = listing
   const d = t.detail
+  const L = loc.listing(listing)
+  const slug = listing.category as ImageSlug
+  const credit = FOOD_IMAGES[slug]
   return (
-    <div className="detail" data-tint={listing.tint}>
-      <section className="detail-hero">
+    <div className="detail" style={{ ['--tile' as string]: `var(--tint-${listing.category})` }}>
+      <section className="detail-media">
+        <FoodImage slug={slug} variant="hero" priority className="detail-img" />
         <div className="detail-top">
-          <button className="circle-btn glass" onClick={onBack} aria-label={d.back}><Icon name="back" /></button>
-          <h2>{d.title}</h2>
-          <button className="circle-btn glass" aria-pressed={favourite} onClick={onToggleFav} aria-label={favourite ? t.favs.remove(listing.title) : t.favs.save(listing.title)} style={{ color: favourite ? 'var(--heart)' : undefined }}><Icon name="heart" filled={favourite} /></button>
+          <button className="icon-btn on-photo" onClick={onBack} aria-label={d.back}><Icon name="back" /></button>
+          <button className="icon-btn on-photo" aria-pressed={favourite} onClick={onToggleFav} aria-label={favourite ? t.favs.remove(L.title) : t.favs.save(L.title)}><Icon name="heart" filled={favourite} /></button>
         </div>
-        <div className="detail-emoji" aria-hidden>{listing.emoji}</div>
-        <span className="hero-chip a">{listing.kind === 'surprise' ? t.listing.surpriseBag : t.listing.exactItem}</span>
-        <span className="hero-chip b">{t.home.off(discountPercent(listing))}</span>
-        <span className="demo-tag">{t.home.demoImage}</span>
+        <span className="chip chip-lg">{t.home.off(discountPercent(listing))}</span>
       </section>
       <section className="detail-sheet">
         <div className="spread" style={{ alignItems: 'start' }}>
-          <h1>{listing.title}</h1>
-          <div className="price-block"><span className="muted small">{d.price}</span><strong>{formatPKR(listing.price)}</strong><span className="was">{formatPKR(listing.originalPrice)}</span></div>
+          <h1>{L.title}</h1>
+          <div className="price-block"><strong>{formatPKR(listing.price)}</strong><span className="was">{formatPKR(listing.originalPrice)}</span></div>
         </div>
-        <div className="pin-row"><span className="pin-icon"><Icon name="pin" size={18} /></span><span>{branch.merchantName}, {branch.branchName} · {branch.neighbourhood}</span></div>
+        <div className="pin-row"><Icon name="pin" size={18} /><span>{loc.merchant(branch.merchantName)}, {loc.branch(branch.branchName)} · {loc.area(branch.neighbourhood)}</span></div>
         <div>
-          <h2 style={{ fontSize: 18 }}>{listing.kind === 'surprise' ? d.whatVaries : d.description}</h2>
-          <p style={{ margin: '6px 0 0' }}>{listing.contents}{listing.minimumValue ? ` ${d.minimumValue}: ${formatPKR(listing.minimumValue)}.` : ''}</p>
+          <h2>{listing.kind === 'surprise' ? d.whatVaries : d.description}</h2>
+          <p>{L.contents}{listing.minimumValue ? ` ${d.minimumValue}: ${formatPKR(listing.minimumValue)}.` : ''}</p>
         </div>
         <div className="tiles">
-          <div className="tile" data-tint="yellow"><span>{d.portion}</span><strong>{listing.portion}</strong></div>
-          <div className="tile" data-tint="peach"><span>{d.pickupWindow}</span><strong>{formatWindow(branch.pickupStart, branch.pickupEnd)}</strong></div>
-          <div className="tile" data-tint="pink"><span>{d.left}</span><strong>{soldOut ? d.soldOutCta : listing.stock}</strong></div>
-          <div className="tile" data-tint="green"><span>{d.youSave}</span><strong>{formatPKR(listing.originalPrice - listing.price)} {d.perPortion}</strong></div>
+          <div className="tile"><span>{d.portion}</span><strong>{L.portion}</strong></div>
+          <div className="tile"><span>{d.pickupWindow}</span><strong>{formatWindow(branch.pickupStart, branch.pickupEnd)}</strong></div>
+          <div className="tile"><span>{d.left}</span><strong>{soldOut ? d.soldOutCta : listing.stock}</strong></div>
+          <div className="tile"><span>{d.youSave}</span><strong>{formatPKR(listing.originalPrice - listing.price)} {d.perPortion}</strong></div>
         </div>
-        <p className="muted small" style={{ margin: 0 }}><strong>{d.allergens}:</strong> {listing.allergens}</p>
+        <p className="muted small"><strong>{d.allergens}:</strong> {L.allergens}</p>
         {soldOut ? (
-          <div className="panel"><h2 style={{ fontSize: 18 }}>{d.soldOutTitle}</h2><p className="muted" style={{ margin: 0 }}>{d.soldOutBody}</p><button className="btn btn-ghost" onClick={onBack}>{d.browseOther}</button></div>
+          <div className="panel"><h2>{d.soldOutTitle}</h2><p className="muted">{d.soldOutBody}</p><button className="btn btn-ghost" onClick={onBack}>{d.browseOther}</button></div>
         ) : (<>
           <section className="panel spread" aria-label={d.quantity}>
-            <div><h2 style={{ fontSize: 18 }}>{d.quantity}</h2><span className="muted small">{d.available(listing.stock)}</span></div>
+            <div><h2>{d.quantity}</h2><span className="muted small">{d.available(listing.stock)}</span></div>
             <div className="stepper">
               <button className="icon-btn" onClick={() => setQty((q) => Math.max(1, q - 1))} disabled={qty <= 1} aria-label={d.decrease}>−</button>
               <output aria-live="polite">{qty}</output>
@@ -73,6 +77,7 @@ export function FoodDetail({ listing, favourite, onToggleFav, onBack, onCheckout
             </dl>
           )}
         </>)}
+        <p className="muted small credit">{t.repImage} {t.credit(credit.author, credit.licence)}</p>
       </section>
       <div className="cta-bar">
         <button className="btn btn-primary" disabled={!quote} onClick={() => onCheckout(qty, fulfilment)}>

@@ -12,6 +12,9 @@
     "e2e": "mkdir -p screenshots && for f in scripts/e2e-*.cjs; do node $f ./screenshots || exit 1; done"
   },
   "dependencies": {
+    "@fontsource-variable/figtree": "^5.3.0",
+    "@fontsource/noto-nastaliq-urdu": "^5.3.0",
+    "motion": "^14.14.0",
     "react": "^19.3.1",
     "react-dom": "^19.3.1"
   },

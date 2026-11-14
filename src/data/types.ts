@@ -25,8 +25,6 @@ export interface Listing {
   price: number
   originalPrice: number
   stock: number
-  emoji: string
-  tint: 'green' | 'pink' | 'yellow' | 'peach'
   allergens: string
   branch: Branch
 }

@@ -1,6 +1,6 @@
 # Product context
 
-Working name: **Karachi Food App** (temporary; see `src/config/brand.ts`). Mobile-first food marketplace for Karachi. Currency PKR, display time `Asia/Karachi`.
+Working name: **Saveit** (temporary; see `src/config/brand.ts`). Mobile-first food marketplace for Karachi. Currency PKR, display time `Asia/Karachi`.
 Source of requirements: the owner's pasted product description (in place of the missing Master Brief) and `docs/DECISIONS.md`. The Production Plan file has not been supplied yet.
 
 ## Who it serves

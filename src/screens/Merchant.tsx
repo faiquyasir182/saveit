@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { DEMO_INCOMING_REQUESTS, DEMO_MERCHANT_ORDERS, LISTINGS, RESPONDERS } from '../data/demo'
 import { t } from '../i18n'
+import { loc } from '../i18n/loc'
+import type { CategoryId } from '../data/categories'
 import { formatPKR } from '../lib/format'
 import { validateCounter } from '../lib/negotiation'
 import { type OrderStatus, canReject, nextStatus } from '../lib/orders'
@@ -8,15 +10,15 @@ import { type OrderStatus, canReject, nextStatus } from '../lib/orders'
 const s = t.merchant
 type Tab = keyof typeof s.tabs
 const responder = RESPONDERS[0] // Demo Biryani House
-const catLabel = (c: string) => ({ biryani: 'Biryani', bbq: 'BBQ', bakery: 'Bakery', dessert: 'Dessert', cafe: 'Café' } as Record<string, string>)[c] ?? c
+const catLabel = (c: string) => t.categories[c as CategoryId] ?? c
 
 function Listings() {
   const [rows, setRows] = useState(LISTINGS.filter((l) => l.branch.id === responder.branch.id).map((l) => ({ ...l, live: true })))
   const update = (id: string, patch: Partial<(typeof rows)[number]>) => setRows((r) => r.map((x) => (x.id === id ? { ...x, ...patch } : x)))
   return <>{rows.map((l) => (
     <article key={l.id} className="panel">
-      <div className="spread"><h3>{l.title}</h3><span className={`tag ${l.live ? 'tag-accept' : 'tag-counter'}`}>{l.live ? s.live : s.paused}</span></div>
-      <span className="muted">{formatPKR(l.price)} · {l.portion}</span>
+      <div className="spread"><h3>{loc.listing(l).title}</h3><span className={`tag ${l.live ? 'tag-accept' : 'tag-counter'}`}>{l.live ? s.live : s.paused}</span></div>
+      <span className="muted">{formatPKR(l.price)} · {loc.listing(l).portion}</span>
       <div className="spread">
         <span><strong>{s.stock}</strong></span>
         <div className="stepper">
@@ -40,7 +42,7 @@ function Requests() {
     return (
       <article key={r.id} className="panel" aria-label={`Request ${r.id}`}>
         <div className="spread"><h3>{s.request(r.quantity, catLabel(r.category))}{r.portion === 'family' ? `, ${s.familySize}` : ''}</h3><span className="muted" style={{ fontSize: 13 }}>{r.id}</span></div>
-        <span className="muted">{r.neighbourhood} · {r.fulfilment === 'pickup' ? t.detail.pickup : t.detail.delivery} · {t.request.inMinutes(r.neededInMin)}</span>
+        <span className="muted">{loc.area(r.neighbourhood)} · {r.fulfilment === 'pickup' ? t.detail.pickup : t.detail.delivery} · {t.request.inMinutes(r.neededInMin)}</span>
         <div className="spread"><strong>{s.offered(formatPKR(r.proposedUnit))}</strong><span className="muted" style={{ fontSize: 13, whiteSpace: "nowrap" }}>{s.yourMin(formatPKR(min))}</span></div>
         {st.result ? <p className="tag tag-accept" style={{ margin: 0, justifySelf: 'start' }} role="status">{s.sent[st.result]}</p>
         : st.countering ? (<>
@@ -81,7 +83,7 @@ export function Merchant() {
   const [tab, setTab] = useState<Tab>('requests')
   return (
     <div className="stack">
-      <header><p className="muted" style={{ margin: 0 }}>{responder.branch.merchantName} · {responder.branch.branchName}</p><h1 style={{ fontSize: 28 }}>{s.title}</h1></header>
+      <header><p className="muted" style={{ margin: 0 }}>{loc.merchant(responder.branch.merchantName)} · {loc.branch(responder.branch.branchName)}</p><h1 style={{ fontSize: 28 }}>{s.title}</h1></header>
       <div className="seg seg-3" role="tablist">
         {(Object.keys(s.tabs) as Tab[]).map((k) => <button key={k} role="tab" aria-selected={tab === k} aria-pressed={tab === k} onClick={() => setTab(k)}>{s.tabs[k]}</button>)}
       </div>

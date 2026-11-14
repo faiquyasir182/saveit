@@ -1,0 +1,106 @@
+{
+  "note": "Representative demonstration images from Wikimedia Commons. They are NOT photos of any listed restaurant's actual food. Cropped and resized to WebP; no other edits.",
+  "retrieved": "2026-11-14",
+  "images": [
+    {
+      "slug": "biryani",
+      "subject": "Lahore-style biryani",
+      "alt": "A plate of Lahore-style biryani",
+      "title": "File:Biryani of Lahore.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Biryani_of_Lahore.jpg",
+      "author": "Muhammad Umair Mirza",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "original": [
+        2230,
+        1793
+      ],
+      "downloadedFrom": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Biryani_of_Lahore.jpg/960px-Biryani_of_Lahore.jpg",
+      "files": {
+        "hero": "images/food/biryani-hero.webp",
+        "card": "images/food/biryani-card.webp",
+        "thumb": "images/food/biryani-thumb.webp"
+      }
+    },
+    {
+      "slug": "bakery",
+      "subject": "Basket of bread rolls",
+      "alt": "A basket of freshly baked bread rolls",
+      "title": "File:Basket of rolls.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Basket_of_rolls.jpg",
+      "author": "Daniel Sone (Photographer)",
+      "licence": "Public domain",
+      "licenceUrl": "",
+      "original": [
+        5184,
+        3456
+      ],
+      "downloadedFrom": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Basket_of_rolls.jpg/960px-Basket_of_rolls.jpg",
+      "files": {
+        "hero": "images/food/bakery-hero.webp",
+        "card": "images/food/bakery-card.webp",
+        "thumb": "images/food/bakery-thumb.webp"
+      }
+    },
+    {
+      "slug": "bbq",
+      "subject": "Seekh kebab",
+      "alt": "Grilled seekh kebabs",
+      "title": "File:Seekh Kabab 2.JPG",
+      "page": "https://commons.wikimedia.org/wiki/File:Seekh_Kabab_2.JPG",
+      "author": "Miansari66",
+      "licence": "CC0",
+      "licenceUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "original": [
+        2816,
+        2112
+      ],
+      "downloadedFrom": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Seekh_Kabab_2.JPG/960px-Seekh_Kabab_2.JPG",
+      "files": {
+        "hero": "images/food/bbq-hero.webp",
+        "card": "images/food/bbq-card.webp",
+        "thumb": "images/food/bbq-thumb.webp"
+      }
+    },
+    {
+      "slug": "dessert",
+      "subject": "Chocolate cake slice",
+      "alt": "A slice of chocolate cake on a white plate",
+      "title": "File:Piece of chocolate cake on a white plate decorated with chocolate sauce.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Piece_of_chocolate_cake_on_a_white_plate_decorated_with_chocolate_sauce.jpg",
+      "author": "Daria Yakovleva",
+      "licence": "CC0",
+      "licenceUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "original": [
+        5536,
+        3766
+      ],
+      "downloadedFrom": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Piece_of_chocolate_cake_on_a_white_plate_decorated_with_chocolate_sauce.jpg/960px-Piece_of_chocolate_cake_on_a_white_plate_decorated_with_chocolate_sauce.jpg",
+      "files": {
+        "hero": "images/food/dessert-hero.webp",
+        "card": "images/food/dessert-card.webp",
+        "thumb": "images/food/dessert-thumb.webp"
+      }
+    },
+    {
+      "slug": "cafe",
+      "subject": "Doodh patti chai",
+      "alt": "A cup of doodh patti chai",
+      "title": "File:Doodh Patti Chai.JPG",
+      "page": "https://commons.wikimedia.org/wiki/File:Doodh_Patti_Chai.JPG",
+      "author": "Miansari66",
+      "licence": "CC0",
+      "licenceUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "original": [
+        4896,
+        3672
+      ],
+      "downloadedFrom": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Doodh_Patti_Chai.JPG/960px-Doodh_Patti_Chai.JPG",
+      "files": {
+        "hero": "images/food/cafe-hero.webp",
+        "card": "images/food/cafe-card.webp",
+        "thumb": "images/food/cafe-thumb.webp"
+      }
+    }
+  ]
+}
